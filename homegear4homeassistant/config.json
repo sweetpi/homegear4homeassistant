@@ -1,8 +1,8 @@
 {
-  "name": "Homegear4Homeassistant",
+  "name": "Homegear4HomeassistantNightly",
   "version": "1.0",
-  "slug": "homegear4homeassistant",
-  "description": "Homegear as a Hassio add-on",
+  "slug": "homegear4homeassistantNightly",
+  "description": "Homegear as a Hassio add-on (Nightly release)",
   "arch": ["armhf"],
   "startup": "services",
   "boot": "auto",
