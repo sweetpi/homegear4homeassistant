@@ -12,6 +12,8 @@ RUN \
     chmod +x /installNightly.sh; \
     /installNightly.sh; \
     rm /installNightly.sh; \
+    groupadd homegear; \
+    useradd -D -d /var/lib/homegear homegear -g homegear -G wheel; \
     rm -f /etc/homegear/dh1024.pem; \
     rm -f /etc/homegear/homegear.crt; \
     rm -f /etc/homegear/homegear.key; \
