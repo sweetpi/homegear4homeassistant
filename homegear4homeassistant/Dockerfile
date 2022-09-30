@@ -1,29 +1,17 @@
-FROM homeassistant/armhf-base-raspbian:buster
-MAINTAINER comsoft1908
-RUN apt-get update && apt-get -y install apt-transport-https apt-utils wget ca-certificates gnupg libzip4 libavahi-client3 libavahi-client-dev insserv locales lsb-release
-COPY installNightly.sh /installNightly.sh
-RUN \
-    touch /tmp/HOMEGEAR_STATIC_INSTALLATION; \
-    touch /.dockerenv; \
-    sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen; \
-    locale-gen; \
-    wget https://apt.homegear.eu/Release.key && apt-key add Release.key && rm Release.key; \
-    echo 'deb https://apt.homegear.eu/Debian/ buster/' >> /etc/apt/sources.list.d/homegear.list; \
-    chmod +x /installNightly.sh; \
-    /installNightly.sh; \
-    rm /installNightly.sh; \
-    groupadd homegear; \
-    useradd -D -d /var/lib/homegear homegear -g homegear -G wheel; \
-    rm -f /etc/homegear/dh1024.pem; \
-    rm -f /etc/homegear/homegear.crt; \
-    rm -f /etc/homegear/homegear.key; \
-    mv /etc/homegear /etc/homegear.config; \
-    mv /var/lib/homegear /var/lib/homegear.data; \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+FROM ghcr.io/hassio-addons/debian-base:6.1.2
+RUN apt-get update && apt-get -y install apt-transport-https apt-utils wget ca-certificates gnupg libzip4 libavahi-client3 libavahi-client-dev locales lsb-release
+# Download and install Homegear's package validation key
+RUN curl -fsSL https://apt.homegear.eu/Release.key | gpg --dearmor -o /usr/share/keyrings/homegear-archive-keyring.gpg
 
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
+# Add Homegear's repository to APT
+RUN echo 'deb [signed-by=/usr/share/keyrings/homegear-archive-keyring.gpg] https://apt.homegear.eu/debian/bullseye/homegear/stable/ bullseye main' > /etc/apt/sources.list.d/homegear.list
+
+# Update package information
+RUN apt update
+
+# Install Homegear with all modules
+RUN apt-get -y install homegear homegear-management homegear-nodes-core homegear-nodes-extra homegear-homematicbidcos homegear-homematicwired homegear-insteon homegear-max homegear-philipshue homegear-sonos homegear-kodi homegear-ipcam homegear-beckhoff homegear-knx homegear-enocean homegear-intertechno homegear-nanoleaf homegear-ccu homegear-mbus homegear-influxdb
+
 
 #VOLUME ["/etc/homegear", "/var/lib/homegear", "/var/log/homegear"]
 
