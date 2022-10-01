@@ -1,6 +1,4 @@
 FROM homegear/homegear:stable
-COPY run.sh /run.sh
-RUN chmod +x /run.sh
-ENTRYPOINT ["/bin/bash", "-c", "/run.sh"]
-
-EXPOSE 2001 2002 2003
+COPY pre-start.sh /pre-start.sh
+RUN chmod +x /pre-start.sh
+ENTRYPOINT ["/bin/bash", "-c", "/pre-start.sh"]
