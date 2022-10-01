@@ -4,7 +4,7 @@
 mkdir -p /data/etc
 mkdir -p /data/lib
 mkdir -p /data/log
-ln -snv /etc/homegear /data/etc
-ln -snv /var/lib/homegear /data/lib
-ln -snv /var/log/homegear /data/log
+ln -snv /data/etc /etc/homegear
+ln -snv /data/lib /var/lib/homegear
+ln -snv /data/log /var/log/homegear
 /start.sh
