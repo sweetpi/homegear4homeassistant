@@ -1,6 +1,6 @@
 {
   "name": "Homegear4Homeassistant",
-  "version": "1.4",
+  "version": "1.5",
   "slug": "homegear4homeassistant",
   "description": "Homegear as a Hassio add-on",
   "arch": ["amd64"],
