@@ -1,6 +1,6 @@
 {
   "name": "Homegear4Homeassistant",
-  "version": "2.1",
+  "version": "2.2",
   "slug": "homegear4homeassistant",
   "description": "Homegear as a Hassio add-on",
   "arch": ["amd64"],
@@ -9,6 +9,7 @@
   "webui": "http://[HOST]:[PORT:2001]/admin",
   "ingress": true,
   "ingress_port": 2001,
+  "ingress_entry": "/admin",
   "panel_icon": "mdi:thermostat-box",
   "panel_title": "Homegear",
   "kernel_modules": true,
@@ -17,7 +18,6 @@
   "udev": true,
   "apparmor": false,
   "full_access": true,
-  "devices": ["/dev/ttyAMA0"],
   "options": {
   },
   "map": ["config:rw", "share:rw", "ssl:rw"],

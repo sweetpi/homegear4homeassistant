@@ -18,14 +18,14 @@ if [[ $GET_VERSION -eq 1 ]]; then
 	exit $?
 fi
 
-USER=homegear
+USER=root
 
 USER_ID=$(id -u $USER)
 USER_GID=$(id -g $USER)
 
 # Home hassio docker user
-USER_ID=102
-USER_GID=102
+#USER_ID=102
+#USER_GID=102
 
 if [ $USER_ID -ne 0 ]; then
 	sed -i -e "s/^${USER}:\([^:]*\):[0-9]*:[0-9]*/${USER}:\1:${USER_ID}:${USER_GID}/" /etc/passwd
