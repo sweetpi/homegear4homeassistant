@@ -23,8 +23,9 @@ USER=homegear
 USER_ID=$(id -u $USER)
 USER_GID=$(id -g $USER)
 
-#USER_ID=${HOST_USER_ID:=$USER_ID}
-#USER_GID=${HOST_USER_GID:=$USER_GID}
+# Home hassio docker user
+USER_ID=102
+USER_GID=102
 
 if [ $USER_ID -ne 0 ]; then
 	sed -i -e "s/^${USER}:\([^:]*\):[0-9]*:[0-9]*/${USER}:\1:${USER_ID}:${USER_GID}/" /etc/passwd
