@@ -1,12 +1,12 @@
 {
   "name": "Homegear4Homeassistant",
-  "version": "1.7",
+  "version": "2.0",
   "slug": "homegear4homeassistant",
   "description": "Homegear as a Hassio add-on",
   "arch": ["amd64"],
   "startup": "services",
   "boot": "auto",
-  "webui": "http://[HOST]:[PORT:2001]",
+  "webui": "http://[HOST]:[PORT:2001]/admin",
   "ingress": true,
   "ingress_port": 2001,
   "panel_icon": "mdi:thermostat-box",
@@ -22,9 +22,7 @@
   },
   "map": ["config:rw", "share:rw", "ssl:rw"],
   "ports": {
-    "2001/tcp": 2001,
-    "2002/tcp": 2002,
-    "2003/tcp": 2003
+    "2001/tcp": 2001
   },
   "environment": {  },
   "schema": {  }
